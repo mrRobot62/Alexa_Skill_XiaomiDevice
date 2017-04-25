@@ -1,0 +1,23 @@
+DialogRobotIntent {Command}
+
+Command Starte {on}
+Command Bitte {on}
+Command Beginne {on}
+Command Saugen {off}
+Command Stoppe saugen
+Command Beende saugen
+Command Stoppe saugen
+
+Command Powermodus {powerA}
+Command Saugmodus {powerA}
+Command Powermodus {powerB}
+Command Saugmodus {powerB}
+Command Powermodus {powerC}
+Command Saugmodus {powerC}
+
+SupportedCommands Nenne mir alle  Befehle
+SupportedCommands Liste alle  Befehle
+SupportedCommands Command set
+SupportedCommands Befehlsliste
+SupportedCommands Hilfe  Befehle
+SupportedCommands Hilfe  Kommandos

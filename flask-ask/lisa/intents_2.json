@@ -1,0 +1,56 @@
+{
+  "intents": [
+    {
+      "intent": "Command",
+      "slots": [
+        {
+          "name": "On",
+          "type": "list_on"
+        },
+        {
+          "name": "Off",
+          "type": "list_off"
+        },
+        {
+          "name": "home",
+          "type": "list_home"
+        },
+        {
+          "name": "powerA",
+          "type": "list_powerA"
+        }
+        ,
+        {
+          "name": "powerB",
+          "type": "list_powerA"
+        }
+        ,
+        {
+          "name": "powerC",
+          "type": "list_powerC"
+        }
+      ]
+    },
+    {
+      "intent": "DialogRobotIntent",
+      "slots": [
+        {
+          "name": "Commands",
+          "type": "list_of_commands"
+        }
+      ]
+    },
+    {
+      "intent": "SupportedCommands"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+welcome: Hallo ich bin {{robot_name}} Dein Staubsaugerroboter. Was kann ich fuer Dich tun?
+card_title: Xiaomi {saugerName} vacuum cleaner
+
+help: |
+  <speak>
+  Du kannst mir direkt einen Befehl mitteilen,
+  mit HILFE nenne ich dir alle Befehle oder mit STOP beendest du mich.
+  Moechtest du die Befehlsliste hoeren?
+  </speak>
+
+help_on: Ich verstehe folgende Start-Befehle {{ cmd }}
+help_off: Ich verstehe folgende Stop-Befehle {{ cmd}}
+help_power: Ich verstehe folgende Power-Befehle {{cmd}}
+
+follow: Du kannst mir weitere Befehle erteilen
+
+start: Ok, ich beginne nun mit der Reinigung, als Saugleistung setze ich {{power}}
+stop: Ok, ich bin fertig und beende die Reinigung.
+stop2: Ok, ich bin fertig und beende die Reinigung. Soll ich zur Ladestation fahren?
+power: Ok, ich setze folgende Saugleistung {{power}}
+find: Hallo, Du sucht micht - ich bin hier"
+
+home: Ich habe fertig gereinigt. Ich fahre zu meiner Ladestation zurueck.
+bye: Bis zum naechsten mal.
+error1: |
+  <speak>
+  Fehler X001. Leider ist ein Softwarefehler aufgetreten. Der interne Aufrufbefehl
+  war fehlerhaft. Der Parameter 1 ist {{cmd1}, der Parameter 2 ist {{cmd2}}
+  </speak>
