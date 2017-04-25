@@ -1,7 +1,0 @@
-welcome: Willkommen zum Memory-Spiel. Ich nenne dir drei Zahlen und du musst sie in umgekehrter Reihenfolge sagen. Fertig?
-
-round: Kannst du die Zahlen rueckwaerts {{ numbers|join(", ") }} aufzaehlen?
-
-win: Sehr gut gemacht!
-
-lose: Du Doof Du - das war nicht richtig.
