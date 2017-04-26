@@ -5,11 +5,6 @@
 #
 #  based on flask_ask
 #
-#   History
-#   26-04-17    0.2 first running Alexa-Skill with start,stop,pause,home
-#   10.04-17    0.1 initial
-#
-#
 # Copyright 2017 Lunax
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -37,24 +32,24 @@ import os
 import subprocess
 from random import randint
 from flask import Flask, render_template
-from flask_ask import Ask, statement, request, question, session, version
+from flask_ask import Ask, statement, question, session
 
 ROBOT_NAME = "Lisa"
 
 app = Flask(__name__)
 ask = Ask(app, "/")
-log = logging.getLogger()
-log.addHandler(logging.StreamHandler())
-log.setLevel(logging.DEBUG)
-logging.getLogger("alexa_skill").setLevel(logging.DEBUG)
-
+logging.getLogger("flask_ask").setLevel(logging.INFO)
 
 #
 # Alexa commands which can be used
 COMMANDS = {}
 COMMANDS['ON'] = {"START":'SAUGEN | REINIGEN | STAUBSAUGEN | REINIGUNG'}
 COMMANDS['OFF'] = {"STOP":'BEENDEN | FERTIG | AUFHOEREN | STOPPE | BEENDE'}
-COMMANDS['POWER'] = {"POWERA":'FLUESTERN | LEISE | MINIMAL | SCHWACH | WENIG'}
+COMMANDS['POWER'] = {
+    "POWERA":'FLUESTERN | LEISE | MINIMAL | SCHWACH | WENIG',
+    "POWERB":'NORMAL | STANDARD',
+    "POWERC":'POWER | MAXIMAL | TURBO | MAXIMUM | STARK'
+}
 COMMANDS['HOME'] = {"HOME":'LADESTATION | BASISSTATION | LADEN'}
 COMMANDS['FIND'] = {"FIND":'SAUGEN | REINIGEN | STAUBSAUGEN | REINIGUNG'}
 
@@ -64,11 +59,11 @@ COMMANDS['FIND'] = {"FIND":'SAUGEN | REINIGEN | STAUBSAUGEN | REINIGUNG'}
 XIAOMI_COMMANDS = {}
 XIAOMI_COMMANDS['START'] = 'start'
 XIAOMI_COMMANDS['STOP'] = 'stop'
-XIAOMI_COMMANDS['CHARGE'] = 'charge'
+XIAOMI_COMMANDS['POWERA'] = 'silent'
+XIAOMI_COMMANDS['POWERB'] = 'standard'
+XIAOMI_COMMANDS['POWERC'] = 'power'
 XIAOMI_COMMANDS['FIND'] = 'find'
 XIAOMI_COMMANDS['HOME'] = 'home'
-XIAOMI_COMMANDS['POWER'] = 'power'
-XIAOMI_COMMANDS['STATUS'] = 'status'
 
 @ask.launch
 def new_xiaomi_cleaner_session():
@@ -77,110 +72,114 @@ def new_xiaomi_cleaner_session():
     return question(welcome_text).reprompt(help_text)
 
 ##### intent decorators ############################
-def constrain(v, min_value, max_value):
-    if v < min_value:
-        return min_value, 1
-    elif v > max_value:
-        return max_value, 2
-    return v, 0
-
-def _command_msg(cmd, pwr=60):
-    rc = 0
-    msg = 'unknown'
+def _command_msg(cmd, power=None):
+    msg = 'help'
     if cmd == 'on':
-        msg = ""
-        pwr0, rc = constrain(int(pwr),10,100)
-        log.info("{} {} {}".format(pwr, pwr0, rc))
-        if rc == 1:
-            msg = render_template('value_min', power = pwr, value=10)
-        elif rc >= 2:
-            msg = render_template('value_max', power = pwr, value=100)
-        #
-        # general message - concatinate
-        msg = msg + render_template('start', power = pwr0)
-    elif cmd == 'off':
-        msg = ""
+        msg = render_template('start', power=power)
+    if cmd == 'off':
         msg = render_template('stop')
-    elif cmd == 'pause':
-        msg = ""
-        msg = render_template('pause')
-    elif cmd == 'home':
-        msg = ""
+    if cmd == 'off2':
+        msg = render_template('stop2')
+    if cmd == 'helpon':
+        list = "saugen, reinigen, staubsaugen, reinigung"
+        msg = render_template('help_on',cmd=list)
+    if cmd == 'helpoff':
+        list = "beenden,fertig,aufhoeren,stoppe,beende"
+        msg = render_template('help_off',cmd=list)
+    if cmd == 'helppower':
+        list = "fluestern,leise,minimal"
+        msg = render_template('help_power',cmd=list)
+    if cmd == 'home':
         msg = render_template('home')
-    elif cmd == 'bye':
-        msg = ""
-        msg = render_template('bye')
-    else:
-        msg = render_template(msg)
-        rc = 1
-    return msg, rc
+    return msg
 
 @ask.intent('cleanerON',
-    default={'on':'saugen', 'power':60}
+    default={'on':'saugen', 'power':'normal'}
 )
-def cmd_on(on,power):
+def cmd_on(on,power=''):
     follow = render_template('follow')
-    log.info("====> cmd_on {} {}".format(on,power))
-    msg = None
-    #msg, rc = _xiaomi_robot(on,power)
+    print("====> cmd_on {} {}".format(on,power))
+    msg, rc = _xiaomi_robot(on,power)
     #
     # if we got no error message, create a success message
     if msg == None:
-        msg,rc = _command_msg('on',power)
-        log.info("render message {}".format(msg))
-    if rc == 1:
-        return question(msg).reprompt(follow)
-
+        msg = _command_msg('on',power)
     return statement(msg)
 
-@ask.intent('AMAZON.StopIntent')
-@ask.intent('cleanerOFF',
-    default={'off':'stop'}
-)
+@ask.intent('cleanerOFF')
 def cmd_off(off):
-    follow = render_template('yesno')
-    msg, rc = _command_msg('off')
-    log.info("cmd_off: {}".format(msg))
+    follow = render_template('follow')
+    print("====> cmd_off {}".format(off))
+    msg,rc = _xiaomi_robot(off)
+    #
+    # if we got no error message, create a success message
+    if msg == None:
+        msg = _command_msg('off2')
+    return question(msg).reprompt(follow)
+#
+# called if user answer last stop-question with YES
+@ask.intent('AMAZON.YesIntent')
+def show_commands():
+    follow = render_template('follow')
+    msg,rc = _xiaomi_robot('home')
+    return question(cmd_list).reprompt(follow)
+
+@ask.intent('cleanerHome')
+def cmd_off(home):
+    follow = render_template('follow')
+    print("====> cmd_home {}".format(home))
+    msg,rc = _xiaomi_robot(home)
+    #
+    # if we got no error message, create a success message
+    if msg == None:
+        msg = _command_msg('on')
+    return statement(msg)
+
+@ask.intent('cleanerHelpOn')
+def cmd_off():
+    follow = render_template('follow')
+    msg = _command_msg('helpon')
     return question(msg).reprompt(follow)
 
+@ask.intent('cleanerHelpOff')
+def cmd_off():
+    follow = render_template('follow')
+    msg = _command_msg('helpoff')
+    return question(msg).reprompt(follow)
+
+@ask.intent('cleanerHelpPower')
+def cmd_off():
+    follow = render_template('follow')
+    msg = _command_msg('helppower')
+    return question(msg).reprompt(follow)
+
+
+@ask.intent('AMAZON.HelpIntent')
+def help():
+    help_text = render_template('help')
+    return question(help_text).reprompt(help_text)
+
 @ask.intent('AMAZON.YesIntent')
-def cmd_home1():
-    msg,rc = _command_msg('home')
-    log.info("cmd_home: {}".format(msg))
-    #
-    # TODO xiaomi_robot -cmd "home"
-    #
-    return statement(msg)
+def show_commands():
+    follow = render_template('follow')
+    cmd_list = COMMANDS.keys
+    return question(cmd_list).reprompt(follow)
 
 @ask.intent('AMAZON.NoIntent')
-def cmd_off1():
-    msg,rc = _command_msg('bye')
-    log.info("cmd_off1: {}".format(msg))
-    #
-    # TODO xiaomi_robot -cmd "pause"
-    #
-    return statement(msg)
+def show_commands():
+    follow = render_template('follow')
+    return question(follow)
 
 @ask.intent('AMAZON.CancelIntent')
-@ask.intent('cleanerPAUSE',
-    default={'pause':'pause'}
-)
-def cmd_pause0(v):
-    msg, rc = _command_msg('pause')
-    log.info("cmd_pause0: {}".format(msg))
-    return statement(msg)
-
+@ask.intent('AMAZON.StopIntent')
+def stop():
+    bye_text = render_template('bye')
+    return statement(bye_text)
 
 ######### session decorators ##################
 @ask.on_session_started
 def new_session():
     logging.info('new session started')
-    log.info("Request ID: {}".format(request.requestId))
-    log.info("Request Type: {}".format(request.type))
-    log.info("Request Timestamp: {}".format(request.timestamp))
-    log.info("Session New?: {}".format(session.new))
-    log.info("User ID: {}".format(session.user.userId))
-    log.info("Alexa Version: {}".format(version))
 
 @ask.session_ended
 def session_ended():

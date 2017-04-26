@@ -3,24 +3,15 @@
     {
       "slots": [
         {
-          "name": "Lisa",
-          "type": "AMAZON.DE_FIRST_NAME"
-        }
-      ],
-      "intent": "saugerName"
-    },
-    {
-      "slots": [
-        {
           "name": "on",
           "type": "list_on"
         },
         {
           "name": "power",
-          "type": "list_power"
+          "type": "AMAZON.NUMBER"
         }
       ],
-      "intent": "saugerON"
+      "intent": "cleanerON"
     },
     {
       "slots": [
@@ -29,70 +20,25 @@
           "type": "list_off"
         }
       ],
-      "intent": "saugerOFF"
+      "intent": "cleanerOFF"
     },
     {
       "slots": [
         {
-          "name": "powerA",
-          "type": "list_pwrA"
+          "name": "pause",
+          "type": "list_pause"
         }
       ],
-      "intent": "saugerPowerA"
+      "intent": "cleanerPAUSE"
     },
     {
-      "slots": [
-        {
-          "name": "powerB",
-          "type": "list_pwrB"
-        }
-      ],
-      "intent": "saugerPowerB"
+      "intent": "AMAZON.YesIntent"
     },
     {
-      "slots": [
-        {
-          "name": "powerC",
-          "type": "list_pwrC"
-        }
-      ],
-      "intent": "saugerPowerC"
+      "intent": "AMAZON.CancelIntent"
     },
     {
-      "slots": [
-        {
-          "name": "home",
-          "type": "list_home"
-        }
-      ],
-      "intent": "saugerHome"
-    },
-    {
-      "slots": [
-        {
-          "name": "home_verb",
-          "type": "list_home_verb"
-        }
-      ],
-      "intent": "saugerHome_verb"
-    },
-    {
-      "slots": [
-        {
-          "name": "help",
-          "type": "list_help"
-        }
-      ],
-      "intent": "saugerHelp"
-    },
-    {
-      "intent": "saugerHelpOn"
-    },
-    {
-      "intent": "saugerHelpOff"
-    },
-    {
-      "intent": "saugerHelpPower"
+      "intent": "AMAZON.NoIntent"
     },
     {
       "intent": "AMAZON.HelpIntent"

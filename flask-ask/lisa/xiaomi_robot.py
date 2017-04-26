@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-# X... Pocket Knife
 ################################################################
 # XIAOMI vaccum cleaner script
 #
@@ -49,7 +48,7 @@ from cryptography.hazmat.primitives import padding
 _backend = default_backend()
 
 TARGET_PORT = 54321
-TOKEN="3168436B30536530724F723033664E6F"
+TOKEN=""
 
 parser = argparse.ArgumentParser(description=("Control Xiaomi Mi Home Wifi devices"))
 grp0 = parser.add_mutually_exclusive_group()

@@ -1,52 +1,33 @@
-saugerON Starte {on} mit Saugleistung {power}
-saugerON Starte {on} mit {power}
-saugerON Starte {on} mit Leistung {power}
-saugerON Start {on} mit {power} Leistung
-saugerON Bitte {on} mit Leistung {power}
-saugerON Bitte {on} mit {power} Leistung
-saugerON Bitte {on} mit {power}
-saugerON Bitte {on} mit Saugleistung {power}
-saugerON Starte {on} im {power} modus
-saugerON Beginne {on} im {power} modus
+cleanerON Starte {on}
+cleanerON Starte {on} mit {power}
+cleanerON Starte {on} mit {power} Prozent
+cleanerON Starte {on} mit {power} Prozent Leistung
 
-saugerON Beginne {on} mit Saugleistung {power}
-saugerON Beginne {on} mit {power}
-saugerON Beginne {on} mit Leistung {power}
-saugerON Beginne {on} mit {power} Leistung
-saugerON Starte {on}
-saugerON Bitte {on}
-saugerON Beginne {on}
-saugerON {on}
-saugerON {on} {power}
-saugerON Bitte fange mit dem {on} an
-saugerOFF Saugen {off}
-saugerOFF {off} saugen
-saugerOFF {off} reinigen
-saugerOFF {off} staubsaugen
-saugerOFF Stoppe saugen
-saugerOFF Beende saugen
-saugerPowerA Powermodus {powerA}
-saugerPowerA Saugmodus {powerA}
-saugerPowerA setze  {powerA}
-saugerPowerA setze Leistung auf {powerA}
-saugerPowerB Powermodus {powerB}
-saugerPowerB Saugmodus {powerB}
-saugerPowerB setze auf {powerB} Leistung
-saugerPowerB setze  {powerB}
-saugerPowerB setze Leistung auf {powerB}
-saugerPowerB setze auf {powerB} Leistung
-saugerPowerC Powermodus {powerC}
-saugerPowerC Saugmodus {powerC}
-saugerPowerC setze auf {powerC} Leistung
-saugerPowerC setze  {powerC}
-saugerPowerC setze Leistung auf {powerC}
-saugerPowerC setze auf {powerC} Leistung
-saugerHome Sauger {home}
-saugerHome Fahre zur {home}
-saugerHome Kehre zur {home} zurück
-saugerHome_verb Fahre zum {home_verb}
-saugerHome_verb Fahre zum {home_verb} zurück
-saugerHelpOn Hilfe Start
-saugerHelpOff Hilfe Stop
-saugerHelpPower Hilfe Power
-saugerHelpPower Hilfe Saugleistung
+cleanerON Bitte {on}
+cleanerON Bitte {on} mit {power}
+cleanerON Bitte {on} mit {power} Prozent
+cleanerON Bitte {on} mit {power} Prozent Leistung
+
+cleanerON Beginne {on}
+cleanerON Beginne {on} mit {power}
+cleanerON Beginne {on} mit {power} Prozent
+cleanerON Beginne {on} mit {power} Prozent Leistung
+
+cleanerON  {on}
+cleanerON  {on} mit {power}
+cleanerON  {on} mit {power} Prozent
+cleanerON  {on} mit {power} Prozent Leistung
+
+cleanerOFF {off}
+cleanerOFF beende {off}
+cleanerOFF Du kannst die Reinigung {off}
+cleanerOFF Du kannst das Saugen {off}
+cleanerOFF {off} Reinigung
+cleanerOFF {off} saugen
+
+cleanerPAUSE {pause}
+cleanerPAUSE {pause} Reinigung
+cleanerPAUSE {pause} saugen
+cleanerPAUSE Bitte die Reinigung {pause}
+cleanerPAUSE Bitte saugen {pause}
+cleanerPAUSE Bitte saugen {pause}

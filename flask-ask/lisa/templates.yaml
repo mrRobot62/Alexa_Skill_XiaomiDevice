@@ -1,29 +1,24 @@
 welcome: Hallo ich bin {{robot_name}} Dein Staubsaugerroboter. Was kann ich fuer Dich tun?
-card_title: Xiaomi {saugerName} vacuum cleaner
+card_title: Xiaomi {{robot_name}} vacuum cleaner
 
-help: |
-  <speak>
-  Du kannst mir direkt einen Befehl mitteilen,
-  mit HILFE nenne ich dir alle Befehle oder mit STOP beendest du mich.
-  Moechtest du die Befehlsliste hoeren?
-  </speak>
+follow: Bitte nenne mir ein Kommando welches ich ausfuehren soll.
+yesno: Du musst mir mit ja oder nein antworten.
 
-help_on: Ich verstehe folgende Start-Befehle {{ cmd }}
-help_off: Ich verstehe folgende Stop-Befehle {{ cmd}}
-help_power: Ich verstehe folgende Power-Befehle {{cmd}}
+start: Ok ich beginne mit der Reinigung mit {{power}} Prozent Leistung
+stop: Ok ich bin fertig und beende die Reinigung. Soll ich zur Ladestation fahren?
+pause: Ok ich unterbreche die Reinigung, wenn ich weiter machen soll, starte den Saugvorgang erneut.
+find: hallo, ich bin hier wenn du mich suchst
 
-follow: Du kannst mir weitere Befehle erteilen
+unknown: Leider konnte ich das Kommando nicht verstehen. Bitte wiederholen.
+value_max: Der Wert {{power}} ueberschreitet den Maximalwert. Ich setze ihn zurueck auf {{value}} Prozent - Einen Moment bitte.
+value_min: Der Wert {{power}} unterschreitet den Minimalwert. Ich setze ihn auf {{value}} Prozent - Einen Moment bitte.
 
-start: Ok, ich beginne nun mit der Reinigung, als Saugleistung setze ich {{power}}
-stop: Ok, ich bin fertig und beende die Reinigung.
-stop2: Ok, ich bin fertig und beende die Reinigung. Soll ich zur Ladestation fahren?
-power: Ok, ich setze folgende Saugleistung {{power}}
-find: Hallo, Du sucht micht - ich bin hier"
+help: Du musst mir ein Kommando mitteilen. Soll ich dir alle Kommandos vorlesen.
 
 home: Ich habe fertig gereinigt. Ich fahre zu meiner Ladestation zurueck.
 bye: Bis zum naechsten mal.
 error1: |
   <speak>
-  Fehler X001. Leider ist ein Softwarefehler aufgetreten. Der interne Aufrufbefehl
-  war fehlerhaft. Der Parameter 1 ist {{cmd1}, der Parameter 2 ist {{cmd2}}
+    Fehler X001. Leider ist ein Softwarefehler aufgetreten. Der interne Aufrufbefehl
+    war fehlerhaft. Der Parameter 1 ist {{cmd1}, der Parameter 2 ist {{cmd2}}
   </speak>

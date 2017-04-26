@@ -1,0 +1,104 @@
+{
+  "intents": [
+    {
+      "slots": [
+        {
+          "name": "Lisa",
+          "type": "AMAZON.DE_FIRST_NAME"
+        }
+      ],
+      "intent": "cleanerName"
+    },
+    {
+      "slots": [
+        {
+          "name": "on",
+          "type": "list_on"
+        },
+        {
+          "name": "power",
+          "type": "list_power"
+        }
+      ],
+      "intent": "cleanerON"
+    },
+    {
+      "slots": [
+        {
+          "name": "off",
+          "type": "list_off"
+        }
+      ],
+      "intent": "cleanerOFF"
+    },
+    {
+      "slots": [
+        {
+          "name": "powerA",
+          "type": "list_pwrA"
+        }
+      ],
+      "intent": "cleanerPowerA"
+    },
+    {
+      "slots": [
+        {
+          "name": "powerB",
+          "type": "list_pwrB"
+        }
+      ],
+      "intent": "cleanerPowerB"
+    },
+    {
+      "slots": [
+        {
+          "name": "powerC",
+          "type": "list_pwrC"
+        }
+      ],
+      "intent": "cleanerPowerC"
+    },
+    {
+      "slots": [
+        {
+          "name": "home",
+          "type": "list_home"
+        }
+      ],
+      "intent": "cleanerHome"
+    },
+    {
+      "slots": [
+        {
+          "name": "home_verb",
+          "type": "list_home_verb"
+        }
+      ],
+      "intent": "cleanerHome_verb"
+    },
+    {
+      "slots": [
+        {
+          "name": "help",
+          "type": "list_help"
+        }
+      ],
+      "intent": "cleanerHelp"
+    },
+    {
+      "intent": "cleanerHelpOn"
+    },
+    {
+      "intent": "cleanerHelpOff"
+    },
+    {
+      "intent": "cleanerHelpPower"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    }
+  ]
+}
